@@ -9,9 +9,15 @@ test('normalizeURL strip protocol', () => {
     expect(actual).toEqual(expected);
 })
 
-
-test('normalizeURL strip protocol with slash', () => {
+test('normalizeURL strip protocol trailing slash', () => {
     const input = 'https://blog.boot.dev/path/';
+    const actual = normalizeURL(input);
+    const expected = 'blog.boot.dev/path';
+    expect(actual).toEqual(expected);
+})
+
+test('normalizeURL capitals', () => {
+    const input = 'https://BLOG.boot.dev/path/';
     const actual = normalizeURL(input);
     const expected = 'blog.boot.dev/path';
     expect(actual).toEqual(expected);
