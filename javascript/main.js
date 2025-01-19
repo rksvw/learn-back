@@ -15,3 +15,5 @@ function main() {
 }
 
 main();
+
+// node --no-warnings main.js || Here --no-warnings is a "FLAG" to tell the node interpreter to not give any warnings message

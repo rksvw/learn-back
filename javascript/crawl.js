@@ -11,6 +11,14 @@ async function crawlPage(currentURL) {
       );
       return;
     }
+
+    const contentType = res.headers.get("content-type");
+    if (!contentType.includes("text/html")) {
+      console.log(
+        `non html response, content type: ${contentType} on page: ${currentURL}`
+      );
+      return;
+    }
     console.log(await res.text());
   } catch (error) {
     console.log(`error in fetch: ${error.message} on page: ${currentURL}`);
