@@ -3,9 +3,12 @@ const { JSDOM } = require("jsdom");
 async function crawlPage(currentURL) {
   console.log(`actively crawling: ${currentURL}`);
 
-  const res = await fetch(currentURL);
-
-  console.log(await res.text());
+  try {
+    const res = await fetch(currentURL);
+    console.log(await res.text());
+  } catch (error) {
+    console.log(`error in fetch: ${error.message}`);
+  }
 }
 
 function getURLsFromHTML(htmlBody, baseURL) {
