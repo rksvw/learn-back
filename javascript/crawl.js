@@ -1,0 +1,14 @@
+/*          THREE STEPS: FOR DOING TEST DRIVEN DEVELOPMENT
+    1. Stub out the function you want to test.
+    2. Write the test for the function.
+    3. Go back and actually implement kind of the meat of the function.
+ */
+
+    // Step 1
+function normalizeURL(urlString) {
+    return urlString;
+}
+
+module.exports = {
+    normalizeURL
+}
