@@ -1,4 +1,13 @@
 const os = require('os');
+const { exec } = require('child_process');
+
+exec('ls', (err, stdout, stderr) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    console.log(stdout);
+})
 
 console.log(os.userInfo());
 console.log(os.homedir());
