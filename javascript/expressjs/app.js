@@ -1,10 +1,45 @@
 const fs = require('fs');
+const zlib = require('zlib');
+const file =  process.argv[2];
 
-const file = fs.createWriteStream('./big.file');
+fs.createReadStream(file).pipe(zlib.createGzip()).pipe(fs.createWriteStream(file + '.gz'));
 
-for(let i = 0; i <= 1e6; i++) {
-    file.write('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n')
-}
-console.log('file is created')
+// const { Transform } = require("stream");
 
-file.end();
+// const commaSplitter = new Transform({
+//   readableObjectMode: true,
+
+//   transform(chunk, encoding, callback) {
+//     this.push(chunk.toString().trim().split(","));
+//     console.log(chunk.toString().trim().split(','));
+//     callback();
+//   },
+// });
+
+// const arrayToObject = new Transform({
+//   readableObjectMode: true,
+//   writableObjectMode: true,
+
+//   transform(chunk, encoding, callback) {
+//     const obj = {};
+//     for (let i = 0; i < chunk.length; i += 2) {
+//       obj[chunk[i]] = chunk[i + 1];
+//     }
+//     this.push(obj);
+//     callback();
+//   },
+// });
+
+// const objectToString = new Transform({
+//   writableObjectMode: true,
+
+//   transform(chunk, encoding, callback) {
+//     this.push(JSON.stringify(chunk) + "\n");
+//     callback();
+//   },
+// });
+// process.stdin
+//   .pipe(commaSplitter)
+//   .pipe(arrayToObject)
+//   .pipe(objectToString)
+//   .pipe(process.stdout);
